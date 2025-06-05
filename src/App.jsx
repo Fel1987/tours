@@ -1,5 +1,8 @@
 const url = "https://www.course-api.com/react-tours-project";
 import { useState, useEffect } from "react";
+import Loading from "./Loading";
+import Error from "./Error";
+import Tours from "./Tours";
 
 const App = () => {
   const [tours, setTours] = useState([]);
@@ -7,6 +10,7 @@ const App = () => {
   const [isError, setIsError] = useState(false);
 
   const fetchData = async (url) => {
+    setIsLoading(true);
     try {
       const res = await fetch(url);
       if (!res.ok) {
@@ -17,8 +21,7 @@ const App = () => {
       }
 
       const data = await res.json();
-
-      console.log(data);
+      setTours(data);
     } catch (error) {
       setIsError(true);
       throw new Error("Failed to load resources. Error: " + error);
@@ -31,6 +34,20 @@ const App = () => {
     fetchData(url);
   }, []);
 
-  return <h2>Tours Starter</h2>;
+  console.log(tours);
+
+  if (isLoading) {
+    return (
+      <main>
+        <Loading />
+      </main>
+    );
+  }
+
+  return (
+    <main>
+      <Tours tours={tours} />
+    </main>
+  );
 };
 export default App;
