@@ -7,6 +7,7 @@ export default function Tours({ tours, onHandleRemoveTours }) {
         <h2>Our Tours</h2>
         <div className="title-underline"></div>
       </div>
+
       <ul className="tours">
         {tours.map((tour) => (
           <Tour

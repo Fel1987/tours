@@ -47,6 +47,36 @@ const App = () => {
     );
   }
 
+  if (isError) {
+    return (
+      <main>
+        <div className="title">
+          <h2>Oh Uh! There was an error loading the tours</h2>
+        </div>
+      </main>
+    );
+  }
+
+  if (!tours.length) {
+    return (
+      <main>
+        <div className="title">
+          <h2>No Tours Left</h2>
+          <button
+            type="button"
+            style={{ marginTop: "2rem" }}
+            className="btn"
+            onClick={() => {
+              fetchData(url);
+            }}
+          >
+            Reload Tours
+          </button>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <>
       <main>
