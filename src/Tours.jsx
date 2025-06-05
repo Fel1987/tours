@@ -1,6 +1,6 @@
 import Tour from "./Tour";
 
-export default function Tours({ tours }) {
+export default function Tours({ tours, onHandleRemoveTours }) {
   return (
     <section>
       <div className="title">
@@ -9,7 +9,11 @@ export default function Tours({ tours }) {
       </div>
       <ul className="tours">
         {tours.map((tour) => (
-          <Tour key={tour.id} {...tour} />
+          <Tour
+            key={tour.id}
+            {...tour}
+            onHandleRemoveTours={onHandleRemoveTours}
+          />
         ))}
       </ul>
     </section>

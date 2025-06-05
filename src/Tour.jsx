@@ -1,4 +1,11 @@
-export default function Tour({ id, image, name, info, price }) {
+export default function Tour({
+  id,
+  image,
+  name,
+  info,
+  price,
+  onHandleRemoveTours,
+}) {
   return (
     <li>
       <article className="single-tour">
@@ -7,6 +14,14 @@ export default function Tour({ id, image, name, info, price }) {
         <div className="tour-info">
           <h5>{name}</h5>
           <p>{info}</p>
+          <button
+            className="btn btn-block delete-btn"
+            onClick={() => {
+              onHandleRemoveTours(id);
+            }}
+          >
+            Not Interested
+          </button>
         </div>
       </article>
     </li>

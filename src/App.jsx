@@ -30,11 +30,14 @@ const App = () => {
     }
   };
 
+  const handleRemoveTour = (id) => {
+    const filteredTours = tours.filter((tour) => tour.id !== id);
+    setTours(filteredTours);
+  };
+
   useEffect(() => {
     fetchData(url);
   }, []);
-
-  console.log(tours);
 
   if (isLoading) {
     return (
@@ -45,9 +48,11 @@ const App = () => {
   }
 
   return (
-    <main>
-      <Tours tours={tours} />
-    </main>
+    <>
+      <main>
+        <Tours tours={tours} onHandleRemoveTours={handleRemoveTour} />
+      </main>
+    </>
   );
 };
 export default App;
